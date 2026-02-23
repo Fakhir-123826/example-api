@@ -1,0 +1,15 @@
+Consumer Key
+hdbimatvwrp84mcmd1oaavm8k7ohleak
+Consumer Secret
+f0m43gapi27bdn43y2nruc9d0m30q1y4
+Access Token
+n2mio7t688maxg20ssfzqyf3009ym79a
+Access Token Secret
+nsbul2s2olcr2b2vhn0hb67awxi2dgnr
+
+
+
+
+UserId & Password for Magento Admin Dash
+admin
+Admin123!
