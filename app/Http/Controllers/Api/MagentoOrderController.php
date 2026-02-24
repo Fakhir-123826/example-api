@@ -22,8 +22,12 @@ class MagentoOrderController extends Controller
             'Content-Type' => 'application/json'
         ])->get($url);
 
+        // if ($response->successful()) {
+        //     return response()->json($response->json());
+        // }
         if ($response->successful()) {
-            return response()->json($response->json());
+            $orders = $response->json();
+            return view('orders.index', compact('orders'));
         }
 
         return response()->json([
@@ -32,24 +36,30 @@ class MagentoOrderController extends Controller
         ], $response->status());
     }
 
-    public function getOrdersWithView() {
-    $magentoBaseUrl = env('MAGENTO_URL');
-    $token = env('MAGENTO_TOKEN');
 
-    $url = $magentoBaseUrl . '/rest/V1/orders?searchCriteria=' . urlencode('{}');
+    public function getProducts()
+    {
+        $magentoBaseUrl = env('MAGENTO_URL');
+        $token = env('MAGENTO_TOKEN');
 
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . $token,
-        'Content-Type' => 'application/json'
-    ])->get($url);
+        $url = $magentoBaseUrl . '/rest/V1/products?searchCriteria=' . urlencode('{}');
 
-    if ($response->successful()) {
-        $data = $response->json(); // decoded array
-        $orders = $data['items'] ?? []; // extract the orders
-        return view('getData', compact('orders')); // pass to Blade view
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type' => 'application/json'
+        ])->get($url);
+
+        if ($response->successful()) {
+            $products = $response->json();
+            // return response()->json($response->json());
+            return view('products.index', compact('products'));
+        }
+
+        return response()->json([
+            'error' => 'Unable to fetch products',
+            'details' => $response->body()
+        ], $response->status());
     }
 
-    // fallback if request fails
-    return view('getData', ['orders' => []]);
-}
+
 }

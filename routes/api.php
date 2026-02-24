@@ -4,4 +4,5 @@
 use App\Http\Controllers\Api\MagentoOrderController;
 
 Route::get('/magento/orders', [MagentoOrderController::class, 'getOrders']);
+Route::get('/products', [MagentoOrderController::class, 'getProducts']);
 // Route::get('/magento/orders/{id}', [MagentoOrderController::class, 'getOrder']);
