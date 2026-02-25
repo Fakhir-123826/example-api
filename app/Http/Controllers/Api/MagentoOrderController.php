@@ -9,7 +9,7 @@ class MagentoOrderController extends Controller
 {
     public function getOrders()
     {
-        // Magento API URL
+        // Magento API URL 
 
         $magentoBaseUrl = env('MAGENTO_URL');
         $token = env('MAGENTO_TOKEN');
